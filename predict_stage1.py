@@ -63,7 +63,7 @@ def main():
 	# load test images
 	IMG_EXT='.jpg'
 	MSK_EXT='.png'
-	img_files = sorted(glob(args.testfolder + '*' + IMG_EXT), key=lambda name: int(os.path.basename(name)[:-4]))
+	img_files = sorted(glob(args.testfolder + '*' + IMG_EXT))
 	print 'Loading images ...'
 	imgs = [pl.imread(imf) for imf in img_files]
     	print 'Superpixel segmentation ...'

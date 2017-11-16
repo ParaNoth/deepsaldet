@@ -10,12 +10,13 @@
 DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 cd $DIR
 
-echo "Downloading..."
-
-wget http://dl.caffe.berkeleyvision.org/caffe_ilsvrc12.tar.gz
-
-echo "Unzipping..."
-
-tar -xf caffe_ilsvrc12.tar.gz && rm -f caffe_ilsvrc12.tar.gz
-
-echo "Done."
+if [ -f "caffe_ilsvrc12.tar.gz" ]
+then
+  echo "Skipping ilsvrc12 download"
+else
+  echo "Downloading..."
+  wget -N http://dl.caffe.berkeleyvision.org/caffe_ilsvrc12.tar.gz
+  echo "Unzipping..."
+  tar -xf caffe_ilsvrc12.tar.gz && rm -f caffe_ilsvrc12.tar.gz
+  echo "Done."
+fi
