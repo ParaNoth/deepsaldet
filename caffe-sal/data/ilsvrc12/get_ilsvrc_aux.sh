@@ -17,6 +17,6 @@ else
   echo "Downloading..."
   wget -N http://dl.caffe.berkeleyvision.org/caffe_ilsvrc12.tar.gz
   echo "Unzipping..."
-  tar -xf caffe_ilsvrc12.tar.gz && rm -f caffe_ilsvrc12.tar.gz
+  tar -xf caffe_ilsvrc12.tar.gz
   echo "Done."
 fi
