@@ -1,3 +1,7 @@
+1. build image sudo nvidia-docker build --no-cache -t deepsaldet .
+2. run container sudo nvidia-docker run --name deepsaldet-inst -dit -v /path/to/your/images/dir:/deepsaldet/images deepsaldet
+3. process your images sudo nvidia-docker exec deepsaldet-inst bash /deepsaldet/get_deep_multicontext_saliency.sh
+
 # deepsaldet
 Source code for our CVPR 2015 work on saliency detection by multi-context deep
 learning. 
