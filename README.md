@@ -1,4 +1,44 @@
-1. build image sudo nvidia-docker build --no-cache -t deepsaldet .
+## Install docker-ce
+
+``` bash
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+
+```
+
+## Install Nvidia-docker
+
+```bash
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+sudo pkill -SIGHUP dockerd
+docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi
+```
+
+
+
+
+
+
+
+1. build image sudo nvidia-docker build --no-cache -t deepsaldet ./
 2. run container sudo nvidia-docker run --name deepsaldet-inst -dit -v /path/to/your/images/dir:/deepsaldet/images deepsaldet
 3. process your images sudo nvidia-docker exec deepsaldet-inst bash /deepsaldet/get_deep_multicontext_saliency.sh
 
@@ -52,25 +92,25 @@ Please kindly cite our work in your publications if it helps your research:
 	@inproceedings{zhao2015saliency,
 	    title = {Saliency Detection by Multi-Context Deep Learning},
  	    author={Zhao, Rui and Ouyang, Wanli and Li, Hongsheng and Wang, Xiaogang},
-	    booktitle = {IEEE Conference on Computer Vision and Pattern
-		Recognition (CVPR)},
-	    year = {2015}
-	}
+​	    booktitle = {IEEE Conference on Computer Vision and Pattern
+​		Recognition (CVPR)},
+​	    year = {2015}
+​	}
 
 ##License
 
 	Copyright (c) 2015, Rui Zhao
 	All rights reserved. 
-
+	
 	Redistribution and use in source and binary forms, with or without 
 	modification, are permitted provided that the following conditions are 
 	met:
-    		* Redistributions of source code must retain the above copyright 
-      		  notice, this list of conditions and the following disclaimer.
-    		* Redistributions in binary form must reproduce the above copyright 
-      		  notice, this list of conditions and the following disclaimer in 
-      		  the documentation and/or other materials provided with the distribution
-   
+			* Redistributions of source code must retain the above copyright 
+	  		  notice, this list of conditions and the following disclaimer.
+			* Redistributions in binary form must reproduce the above copyright 
+	  		  notice, this list of conditions and the following disclaimer in 
+	  		  the documentation and/or other materials provided with the distribution
+	   
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
 	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
 	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 

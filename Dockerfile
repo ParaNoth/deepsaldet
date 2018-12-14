@@ -31,8 +31,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-scipy && \
     rm -rf /var/lib/apt/lists/*
 
-
-RUN pip install scikit-image leveldb matplotlib protobuf==2.6
+RUN pip install cython
+RUN pip install ez_setup
+RUN pip install scikit-image==0.9.3 leveldb matplotlib==2.0.0 protobuf
+#RUN pip install scikit-image leveldb matplotlib protobuf==2.6
 RUN git clone https://github.com/Arsey/deepsaldet.git
 
 # build Caffe
